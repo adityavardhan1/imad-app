@@ -9,12 +9,12 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-app.get('/article-second', function(req,res) {
-    res.send('article second requested and be served shortly')
+app.get('/article-two', function(req,res) {
+    res.send('article two requested and be served shortly')
 });
 
-app.get('/article-third', function(req,res) {
-    res.send('article third requested and be served shortly')
+app.get('/article-three', function(req,res) {
+    res.send('article three requested and be served shortly')
 });
 
 app.get('/article-one', function(req,res) {
