@@ -5,20 +5,51 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
-var articleOne = {
-    title : 'Article one | Aditya Vardhan',
-    heading: 'article one',
-    date : 'august 6,2017',
-    content : ` <p>
-                   this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page. 
-                </p>
-                <p>
-                   this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page. 
-                </p>
-                <p>
-                   this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page. 
-                </p> `
-}
+var article {
+     'article-one' : {
+        title : 'Article one | Aditya Vardhan',
+        heading: 'article one',
+        date : 'august 6,2017',
+        content : ` <p>
+                       this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page. 
+                    </p>
+                    <p>
+                       this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page. 
+                    </p>
+                    <p>
+                       this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page. 
+                    </p> `
+    },
+     'article-two' : {
+        title : 'Article two | Aditya Vardhan',
+        heading: 'article two',
+        date : 'august 6,2017',
+        content : ` <p>
+                       this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page. 
+                    </p>
+                    <p>
+                       this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page. 
+                    </p>
+                    <p>
+                       this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page. 
+                    </p> `
+        },
+    'article-three' : {
+        title : 'Article three | Aditya Vardhan',
+        heading: 'article three',
+        date : 'august 6,2017',
+        content : ` <p>
+                       this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page. 
+                    </p>
+                    <p>
+                       this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page. 
+                    </p>
+                    <p>
+                       this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page.this is the content of my page. 
+                    </p> `
+    }
+};
+    
 function createTemplate(data){
     var title = data.title;
     var heading =data.heading;
@@ -63,16 +94,9 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-app.get('/article-two', function(req,res) {
-    res.sendFile(path.join(__dirname, 'ui', 'article-two.html'));
-});
-
-app.get('/article-three', function(req,res) {
-    res.sendFile(path.join(__dirname, 'ui', 'article-three.html'));
-});
-
-app.get('/article-one', function(req,res) {
-    res.send(createTemplate(articleOne));
+app.get('/:articleName', function(req,res) {
+   var articleName = req.params.articleName;
+    res.send(createTemplate(article[articleName]));
 });
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
